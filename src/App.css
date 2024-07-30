@@ -1,0 +1,121 @@
+/* App.css */
+
+/* Reset styles and ensure full viewport coverage */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  min-width: 320px;
+  background-color: #def6d4;
+  font-family: Arial, sans-serif;
+}
+
+/* Flexible container for all content */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Style the navigation bar */
+nav {
+  background-color: #449540;
+  padding: 10px 0;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Align items vertically */
+  flex-wrap: wrap;
+}
+
+nav ul li {
+  display: flex;
+  align-items: center; /* Align items in the list vertically */
+  margin: 0 10px; /* Adjusted margin for better spacing */
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #ffffff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+  display: flex;
+  align-items: center; /* Align items within the link vertically */
+}
+
+nav ul li a:hover {
+  background-color: rgba(220, 0, 0, 0.2);
+  color: #de7f7f;
+}
+
+/* Logo specific styles */
+.logo {
+  height: 40px; /* Adjust the height to increase the logo size */
+  width: 40px; /* Set the width equal to the height to make it a circle */
+  border-radius: 50%; /* Make the logo circular */
+  object-fit: cover; /* Ensure the logo maintains its aspect ratio */
+  margin-right: 10px; /* Space between the logo and text */
+}
+
+/* Main content area */
+main {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Responsive product container */
+.product-container {
+  max-width: 800px;
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.product-image {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+h1 {
+  font-size: 2em;
+  line-height: 1.1;
+  margin-bottom: 15px;
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  h1 {
+    font-size: 1.5em;
+  }
+}
+
+/* Ensure buttons and inputs are touch-friendly on mobile */
+button, input[type="submit"] {
+  min-height: 40px;
+  min-width: 40px;
+}
