@@ -1,0 +1,138 @@
+.center-container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  min-height: 100vh; /* Full viewport height */
+  background-color: #261414; /* Background color */
+  padding: 16px; /* Add padding to avoid content touching the edges */
+}
+
+.product-detail {
+  display: flex; /* Horizontal layout for image and content */
+  align-items: flex-start; /* Align items to the top */
+  background-color: #e5e8a8; /* Background color */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  width: 100%; /* Adjust to fit your layout needs */
+  max-width: 1000px; /* Maximum width for the container */
+  box-shadow: 0 4px 8px rgba(220, 24, 24, 0.1);
+  overflow: hidden; 
+  transition: background-color 0.3s;
+}
+
+.product-image-container {
+  flex: 1; 
+}
+
+.product-image {
+  width: 100%; 
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover; /* Cover the area without stretching */
+}
+
+.product-content {
+  flex: 2; /* Takes up more space on the right */
+  padding-left: 16px; /* Space between image and content */
+  display: flex; /* Vertical stacking of content sections */
+  flex-direction: column; /* Stack items vertically */
+}
+
+.detail-box {
+  margin-bottom: 16px; /* Space between sections */
+}
+
+.manual-box {
+  margin-top: 16px; 
+  margin-bottom: 16px; 
+}
+
+
+.price {
+  color: rgb(196, 27, 27); 
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.cart-box {
+  display: flex; /* Vertical stacking for quantity controls and button */
+  flex-direction: column;
+}
+
+.quantity-controls {
+  display: flex; /* Horizontal layout for quantity controls */
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.quantity-button {
+  background-color: #f1f4de;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 8px;
+  margin: 0 4px; /* Space between buttons */
+  cursor: pointer;
+  font-size: 16px;
+  width: 40px; 
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.quantity-display {
+  font-size: 16px;
+  margin: 0 8px; /* Space between quantity display and buttons */
+}
+
+.add-to-cart-button {
+  background-color: #007bff; 
+  color: #fff;
+  border: none;
+  border-radius: 2px;
+  padding: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  width: 100%;
+  box-sizing: border-box; 
+  max-width: 120px; 
+}
+
+.add-to-cart-button:hover {
+  background-color: #007bff; 
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-to-cart-button:disabled {
+  background-color: grey; 
+  cursor: not-allowed; 
+}
+
+.wishlist-button {
+  background-color: #ff4081; 
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 2px 12px; 
+  cursor: pointer;
+  font-size: 14px; 
+  transition: background-color 0.3s;
+  margin-top: 6px;
+  margin-left: 6px;
+  width: auto;
+  max-width: 100px 
+}
+
+.warning {
+  color: red;
+  margin-left: 10px;
+}
+
+.success {
+  color: green;
+  margin-left: 10px;
+}
+
