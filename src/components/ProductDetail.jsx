@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import config from '../config';
 import { getProductById, addWishList } from '../apis/product';
 import { addProductToCart } from '../apis/cart';
@@ -18,6 +18,7 @@ const ProductDetail = () => {
 
   const { userId } = useAuth();
   const { addToCart } = useCart(); // Use addToCart from CartContext
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const productUrl = `${config.apiBaseUrl}/product-svc/product/${id}`;
   const cartUrl = `${config.apiBaseUrl}/cart-svc/cart/${userId}/add`;
@@ -66,9 +67,9 @@ const ProductDetail = () => {
           }
         })
         .catch(error => {
-          console.error('Add to Cart error:', error); // Log the error
-          if (userId == '') {
-            toast.error('Please login first.');
+          console.error('Add to Cart error:', error); 
+          if (!userId) {
+            navigate('/login'); // Redirect to login page
           } else {
             toast.error('An error occurred. Please try again.');
           }
@@ -79,8 +80,8 @@ const ProductDetail = () => {
   };
 
   const handleWishlist = () => {
-    if (userId == '') {
-      toast.error('Please login first.');
+    if (!userId) {
+      navigate('/login'); // Redirect to login page
       return;
     }
 

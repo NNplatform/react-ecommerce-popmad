@@ -7,15 +7,20 @@ import artToyImage from '../../images/art-toy.jpg';
 
 const ProductDetail = () => {
   const [ProductList, setProductList] = useState([]); 
+  const [error, setError] = useState(null); // Add error state
   const url = `${config.apiBaseUrl}/product-svc/product`; 
 
   useEffect(() => {
-    getProductAll(url).then((response) => {
-      const products = extractProductList(response.data); 
-      setProductList(products);
-    }).catch(error => {
-      console.error('Error fetching products:', error);
-    });
+    getProductAll(url)
+      .then((response) => {
+        const products = extractProductList(response.data); 
+        setProductList(products);
+        setError(null); // Clear any previous errors
+      })
+      .catch(error => {
+        console.error('Error fetching products:', error);
+        setError('Products Page not available'); // Set error message
+      });
   }, [url]);
 
   function extractProductList(data) {
@@ -36,7 +41,9 @@ const ProductDetail = () => {
 
   return (
     <div className="product-list">
-      {ProductList.length > 0 ? (
+      {error ? (
+        <p>{error}</p> // Display error message
+      ) : ProductList.length > 0 ? (
         ProductList.map(product => (
           <div key={product.productId} className={`product-box ${product.isSoldOut ? 'sold-out' : ''}`}>
             {product.isSoldOut && (
@@ -45,7 +52,7 @@ const ProductDetail = () => {
             <img src={product.imageUrl} alt={product.name} className="product-image" />
             <h2>{product.name}</h2>
             <h5>ID: {product.productId}</h5>
-            <p>stock: {product.stock}</p>
+            <p>Stock: {product.stock}</p>
             <Link to={`/products/${product.productId}`}>View Details</Link> {/* Link to product detail */}
           </div>
         ))

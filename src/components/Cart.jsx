@@ -215,7 +215,9 @@ const Cart = () => {
   const isCheckoutDisabled = calculateTotal() === 0 || cartItems.length === 0;
 
   if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
+  if (error) return <div>Error: Cart Page Not Available</div>;
+  //  if (error) return <div>Error: {error.message}</div>;
+
 
   return (
     <div className="center-container">

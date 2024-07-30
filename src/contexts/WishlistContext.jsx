@@ -8,6 +8,7 @@ export const WishlistContext = createContext();
 export const WishlistProvider = ({ children }) => {
   const { userId } = useAuth();
   const [wishlistItemCount, setWishlistItemCount] = useState(0);
+  const [error, setError] = useState(null); // Add error state
 
   useEffect(() => {
     const fetchWishlistItemCount = async () => {
@@ -16,9 +17,11 @@ export const WishlistProvider = ({ children }) => {
         const response = await getWishList(wishlistUrl);
         const items = response.data.result || [];
         setWishlistItemCount(items.length);
+        setError(null); // Clear any previous errors
       } catch (error) {
         console.error('Error fetching wishlist items:', error);
         setWishlistItemCount(0);
+        setError('Wishlist Page Not Available'); // Set error message
       }
     };
 
@@ -34,13 +37,15 @@ export const WishlistProvider = ({ children }) => {
       const wishlistUrl = `${config.apiBaseUrl}/product-svc/wishlist/${userId}`;
       const response = await getWishList(wishlistUrl);
       setWishlistItemCount(response.data.result.length);
+      setError(null); // Clear any previous errors
     } catch (error) {
       console.error('Error updating wishlist item count:', error);
+      setError('Wishlist Page Not Available'); // Set error message
     }
   };
 
   return (
-    <WishlistContext.Provider value={{ wishlistItemCount, updateWishlistItemCount }}>
+    <WishlistContext.Provider value={{ wishlistItemCount, updateWishlistItemCount, error }}>
       {children}
     </WishlistContext.Provider>
   );
