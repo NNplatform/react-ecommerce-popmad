@@ -1,4 +1,3 @@
-// ProductDetail.js
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import config from '../config';
@@ -33,7 +32,7 @@ const ProductDetail = () => {
         setLoading(false);
       })
       .catch((error) => {
-        console.error('Error fetching products:', error);
+        console.error('Error fetching product:', error);
         setLoading(false);
         toast.error('Failed to load product');
       });
@@ -67,7 +66,12 @@ const ProductDetail = () => {
           }
         })
         .catch(error => {
-          toast.error('An error occurred. Please try again.');
+          console.error('Add to Cart error:', error); // Log the error
+          if (userId == '') {
+            toast.error('Please login first.');
+          } else {
+            toast.error('An error occurred. Please try again.');
+          }
         });
     } else {
       toast.error('Add Cart failed. Product not available.');
@@ -75,11 +79,17 @@ const ProductDetail = () => {
   };
 
   const handleWishlist = () => {
+    if (userId == '') {
+      toast.error('Please login first.');
+      return;
+    }
+
     addWishList(wishlistUrl)
       .then((response) => {
         toast.success('Add to Wishlist Success');
       })
       .catch(error => {
+        console.error('Add to Wishlist error:', error); // Log the error
         toast.error('An error occurred. Please try again.');
       });
   };
