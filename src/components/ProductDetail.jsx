@@ -28,6 +28,7 @@ const ProductDetail = () => {
     setLoading(true);
     getProductById(productUrl)
       .then((response) => {
+        console.log('Get ProductById Response:', response.data);
         const product = extractProductDetails(response.data);
         setProduct(product);
         setLoading(false);
@@ -58,7 +59,7 @@ const ProductDetail = () => {
     if (product) {
       addProductToCart(cartUrl, product.productId, quantity)
         .then((response) => {
-          console.log('cart result:', response.data);
+          console.log('Add CartItem Response:', response.data);
           if (response.data.code === '-1') {
             toast.error(response.data.message || 'Failed to add to cart. Please try again.');
           } else {
@@ -87,6 +88,7 @@ const ProductDetail = () => {
 
     addWishList(wishlistUrl)
       .then((response) => {
+        console.log('Add Wishlist Response:', response.data);
         toast.success('Add to Wishlist Success');
       })
       .catch(error => {

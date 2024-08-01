@@ -3,7 +3,7 @@ import './styles/Home.css';
 
 
 function Home() {
-  console.log('Hi log');
+  console.log('Welcom to PopMAD Logging');
   return (
     <div>
        <h1>Welcome to our E-commerce PopMAD!</h1>;

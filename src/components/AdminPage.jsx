@@ -21,7 +21,7 @@ const AdminPage = () => {
   useEffect(() => {
     getAdminPageResult(url)
       .then((response) => {
-        console.log('Admin Response:', response.data);
+        console.log('Admin Dashboard Response:', response.data);
         const result = extractAdminData(response.data);
         setAdminInfo(result);
       })
@@ -31,7 +31,6 @@ const AdminPage = () => {
   }, [url]);
 
   function extractAdminData(data) {
-    console.info('result:', data.result);
     if (data.code === '0' && data.result) {
       return {
         column1: data.result.totalUser,
@@ -48,26 +47,31 @@ const AdminPage = () => {
     <div>
       {adminInfo ? (
         <ul className="admin-dashboard">
+
           <li className="dashboard-item">
             <UserOutlined className="dashboard-icon" />
             <span className="dashboard-value">{adminInfo.column1}</span>
             <span className="dashboard-label">Total Users</span>
           </li>
+
           <li className="dashboard-item">
             <ClockCircleOutlined className="dashboard-icon" />
             <span className="dashboard-value">{adminInfo.column2}</span>
             <span className="dashboard-label">Pending Users</span>
           </li>
+
           <li className="dashboard-item">
             <ShoppingCartOutlined className="dashboard-icon" />
             <span className="dashboard-value">{adminInfo.column3}</span>
             <span className="dashboard-label">Ordered Users</span>
           </li>
+
           <li className="dashboard-item">
             <ExclamationCircleOutlined className="dashboard-icon" />
             <span className="dashboard-value">{adminInfo.column4}</span>
             <span className="dashboard-label">Attempt Depleted Product Users</span>
           </li>
+          
         </ul>
       ) : (
         <p>Loading admin data...</p>

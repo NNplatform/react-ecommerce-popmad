@@ -13,6 +13,7 @@ const ProductDetail = () => {
   useEffect(() => {
     getProductAll(url)
       .then((response) => {
+        console.log('Get List of Product Response:', response.data);
         const products = extractProductList(response.data); 
         setProductList(products);
         setError(null); // Clear any previous errors

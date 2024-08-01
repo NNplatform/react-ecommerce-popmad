@@ -16,7 +16,7 @@ const Login = () => {
     try {
       setWarning(''); 
       const response = await signIn(url, email, password);
-      console.log('Login Response data:', response.data);
+      console.log('Login Response:', response.data);
       
       if (response.data.code === "0") {
         const userId = extractUserId(response.data);

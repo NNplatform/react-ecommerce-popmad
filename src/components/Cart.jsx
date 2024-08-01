@@ -30,6 +30,7 @@ const Cart = () => {
     setError(null);
     getCartItem(fetchCartUrl)
       .then((response) => {
+        console.log('Get CartItems Response:', response.data);
         const carts = extractCarts(response.data);
         return findProductDetail().then(products => ({ carts, products }));
       })
@@ -51,8 +52,7 @@ const Cart = () => {
       const addCartUrl = `${config.apiBaseUrl}/cart-svc/cart/${userId}/add`;
       addProductToCart(addCartUrl, productId, quantity)
         .then(response => {
-          console.log('cart result:', response.data);
-  
+          console.log('Add CartItem Response:', response.data);
           if (response.data.code === '-1') {
             toast.error(response.data.message || 'Failed to update cart item. Please try again.');
           } else {
@@ -79,7 +79,7 @@ const Cart = () => {
       console.log(`Removing productId ${productId} amount ${quantity} of userId: ${userId}`);
       removeProductInCart(removeCartUrl, productId, quantity)
         .then(response => {
-          console.log('Remove Cart Response:', response.data);
+          console.log('Remove CartItem Response:', response.data);
   
           if (response.data.code === '-1') {
             toast.error(response.data.message || 'Failed to remove item from cart. Please try again.');
@@ -147,7 +147,7 @@ const Cart = () => {
     return new Promise((resolve, reject) => {
       getProductAll(productUrl)
         .then((response) => {
-          console.log('Response data:', response.data);
+          console.log('Get ProductDetails Response:', response.data);
           const products = extractProducts(response.data);
           resolve(products);
         })

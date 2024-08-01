@@ -15,6 +15,7 @@ const Wishlist = () => {
       try {
         const wishlistUrl = `${config.apiBaseUrl}/product-svc/wishlist/${userId}`;
         const response = await getWishList(wishlistUrl);
+        console.log('Get WishlistItem Response:', response.data);
         setWishlistItems(response.data.result || []);
       } catch (error) {
         console.error('Error fetching wishlist items:', error);
